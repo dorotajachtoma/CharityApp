@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -25,25 +27,49 @@
         </div>
     </div>
 </header>
-<section class="stats">
-    <div class="container container--85">
-        <div class="stats--item">
-            <em>${quantity}</em>
 
-            <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
-        </div>
+<form:form method="post" modelAttribute="donation" class="form--steps-container ">
+    <br/>
+    <p></p>
+    <form:input path="id" type="hidden"/>
+    <p class="">Kategorie:</p>
+<br/>
+    <form:checkboxes path="categories" items="${categories}" itemLabel="name" class="form-group--checkbox"/>
 
-        <div class="stats--item">
-            <em>${uniqueInstituties}</em>
-            <h3>Wspartych organizacji</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
-        </div>
+    <p>Instytucje:</p>
+<br/>
+    <form:select path="institution" items="${institutions}" itemLabel="name" />
 
-    </div>
-</section>
+    <p>Kod pocztowy:</p>
+<br/>
+    <form:input path="zipCode" type="text" />
+
+    <p>Ulica:</p>
+<br/>
+    <form:input path="street" type="text" />
+
+    <p>Miasto:</p>
+<br/>
+    <form:input path="city" type="text" />
+
+    <p>Ilość worków:</p>
+<br/>
+    <form:input path="quantity" type="text" />
+
+    <p>Komentarz:</p>
+<br/>
+    <form:textarea path="pickUpComment" />
+
+    <p>Data odbioru:</p>
+<br/>
+    <form:input type="date" path="pickUpDate"  />
+
+    <p>Godzina odbioru:</p>
+<br/>
+    <form:input type="time" path="pickUpTime" />
+
+    <button class="btn" type="submit">Wyślij</button>
+</form:form>
 
 <section class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
@@ -123,4 +149,3 @@
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>
-

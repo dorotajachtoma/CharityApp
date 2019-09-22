@@ -1,24 +1,34 @@
 package pl.coderslab.charity.model;
 
+
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.IdentifiableType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
 @Data
-@Table(name = "institution")
-public class Institution {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String name;
+    @Size(min = 5,max = 20)
+    private String firstName;
 
     @NotBlank
-    private String description;
+    @Size(min = 5,max = 20)
+    private String lastName;
+
+    @Email
+    @NotBlank
+    private String email;
+
 
 }

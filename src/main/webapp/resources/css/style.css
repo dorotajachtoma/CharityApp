@@ -527,6 +527,7 @@ form .form-group {
   width: 100%;
   padding: 0 15px;
   margin-bottom: 20px;
+  position: center;
 }
 
 /* line 10, scss/modules/_forms.scss */
