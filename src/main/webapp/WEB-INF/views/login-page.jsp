@@ -62,55 +62,20 @@
 
     <div class="about-us">
 
-        <form:form method="post" modelAttribute="donation" class="form-steps-container">
+        <form name='f' action="login" method='POST'>
             <br/>
-            <p></p>
-            <form:input path="id" type="hidden"/>
-            <div class="form-group form-group--50"> <label class="form-group--checkbox">Kategorie:</label>
-                <form:checkboxes path="categories" items="${categories}" itemLabel="name"/>
+            <div class="form-group form-group--50">
+                <label class="form-group--checkbox">Nazwa użytkownika</label>
+                <input type='text' name='email'>
             </div>
 
             <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Instytucje:</label>
-                <form:select path="institution" items="${institutions}" itemLabel="name" />
+                <label class="form-group--checkbox">Hasło</label>
+                <input type='password' name='password'/>
             </div>
 
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Kod pocztowy </label>
-                <form:input path="zipCode" type="text" class="form-group form-group--50" />
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Ulica </label>
-            <form:input path="street" type="text" class="form-group form-group--50"/>
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Miasto</label>
-            <form:input path="city" type="text" class="form-group form-group--50" />
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Ilość worków </label>
-            <form:input path="quantity" type="text" />
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Komentarz:</label>
-            <form:textarea path="pickUpComment" />
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Data odbioru:</label>
-            <form:input type="date" path="pickUpDate"  />
-            </div>
-
-            <div class="form-group form-group--50">
-                <label class="form-group--checkbox">Godzina odbioru:</label>
-            <form:input type="time" path="pickUpTime" />
-            </div>
-            <button class="btn" type="submit">Wyślij</button>
-        </form:form>
+            <input name="submit" class="btn btn-dark" type="submit" value="Login" />
+        </form>
     </div>
 
 </section>

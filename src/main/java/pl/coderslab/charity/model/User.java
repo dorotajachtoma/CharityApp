@@ -4,7 +4,6 @@ package pl.coderslab.charity.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.persistence.metamodel.IdentifiableType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -29,6 +28,9 @@ public class User {
     @Email
     @NotBlank
     private String email;
+
+    @NotBlank
+    private String password;
 
 
 }

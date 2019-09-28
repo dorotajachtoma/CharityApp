@@ -794,6 +794,7 @@ form .form-section--columns .form-group label textarea, form .form-section--colu
   max-width: 200px;
 }
 
+
 /* line 220, scss/modules/_forms.scss */
 form.form--contact input:not([type="checkbox"]):not([type="radio"]),
 form.form--contact textarea {
@@ -1257,6 +1258,11 @@ header nav ul li:last-of-type {
   background-position: center;
   background-repeat: no-repeat;
   display: block;
+}
+
+.form-div{
+  width: 500px;
+
 }
 
 /* line 33, scss/modules/homepage-sections/_steps.scss */

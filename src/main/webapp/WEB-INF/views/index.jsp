@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="http://localhost:8084/register" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us">
