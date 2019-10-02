@@ -66,7 +66,7 @@
             <br/>
             <div class="form-group form-group--50">
                 <label class="form-group--checkbox">Nazwa użytkownika</label>
-                <input type='text' name='email'>
+                <input type='text' name='username'>
             </div>
 
             <div class="form-group form-group--50">
