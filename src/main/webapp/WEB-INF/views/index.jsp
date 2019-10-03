@@ -70,8 +70,22 @@
             <p>kurier przyjedzie w dogodnym terminie</p>
         </div>
     </div>
+<c:choose>
 
-    <a href="http://localhost:8084/register" class="btn btn--large">Załóż konto</a>
+<c:when test="${context == false}">
+
+        <a href="http://localhost:8084/register" class="btn btn--large">Załóż konto</a>
+</section>
+
+    </c:when>
+    <c:otherwise>
+
+        <a href="http://localhost:8084/register" class="btn btn--large" style="display: none;"></a>
+</section>
+
+</c:otherwise>
+
+</c:choose>
 </section>
 
 <section class="about-us">

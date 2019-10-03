@@ -28,6 +28,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
+
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -49,7 +50,7 @@ public class UserController {
             userRepository.save(user);
             Role role = new Role();
             role.setUsername(user.getEmail());
-            role.setRole("USER");
+            role.setRole("ADMIN");
             roleRepository.save(role);
             return "redirect:/";
         }
@@ -67,5 +68,10 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "admin-page";
     }
 }
