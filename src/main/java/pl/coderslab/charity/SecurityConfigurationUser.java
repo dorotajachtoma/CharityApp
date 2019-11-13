@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.coderslab.charity.repository.SuccessLoginHandler;
 
 @EnableWebSecurity
 @Configuration
@@ -28,6 +29,9 @@ public class SecurityConfigurationUser extends WebSecurityConfigurerAdapter {
     private DataSource datasource;
 
     @Autowired
+    private SuccessLoginHandler handler;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(datasource)
                 .passwordEncoder(passwordEncoder())
@@ -40,10 +44,11 @@ public class SecurityConfigurationUser extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/donations/**").access("hasRole('USER')")
                 .and().formLogin()
-                .loginPage("/login").successForwardUrl("/donations/add-donation")
-                .and().logout()
-                .logoutSuccessUrl("/");
+                .loginPage("/login")
+                .successHandler(handler);
         http.csrf().disable();
         http.logout();
     }
+
+
 }

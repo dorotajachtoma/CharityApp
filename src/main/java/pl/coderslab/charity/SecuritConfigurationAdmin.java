@@ -1,5 +1,6 @@
 package pl.coderslab.charity;
 
+import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.coderslab.charity.repository.SuccessLoginHandler;
 
 @EnableWebSecurity
 @Configuration
@@ -26,6 +28,9 @@ class SecurityConfigurationAdmin extends WebSecurityConfigurerAdapter {
     private DataSource datasource;
 
     @Autowired
+    private SuccessLoginHandler handler;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(datasource)
                 .passwordEncoder(passwordEncoderAdmin())
@@ -38,10 +43,9 @@ class SecurityConfigurationAdmin extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')").anyRequest().authenticated()
                 .and().formLogin()
+                .defaultSuccessUrl("/admin")
                 .loginPage("/login")
-                .successForwardUrl("/admin")
-                .and().logout()
-                .logoutSuccessUrl("/");
+                .successHandler(handler);
         http.csrf().disable();
         http.logout();
     }
